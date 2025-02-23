@@ -1,115 +1,109 @@
-# Neural Network Training Marketplace (NNTM)
+# Neural Network Training Marketplace (neural-network-dmarket)
 
-A decentralized marketplace for AI model training combining Web3 and artificial intelligence. This project enables data providers to monetize high-quality datasets while allowing ML developers to access computing resources and training data in a trustless environment.
+A decentralized marketplace for AI model training combining Web3 and artificial intelligence. This platform lets data providers stake tokens on their dataset quality while machine learning developers can bid for training computation time.
 
-## Repository Structure
+## Key Features
 
-```
-neural-network-marketplace/
-├── contracts/
-│   ├── AIDatasetRegistry.sol
-│   ├── ComputationMarket.sol
-│   ├── ModelValidation.sol
-│   ├── RewardDistribution.sol
-│   └── interfaces/
-├── test/
-├── scripts/
-└── frontend/
-```
+1. **Dataset Registration and Staking**
+   - Data providers can register their datasets with quality stakes
+   - Minimum stake requirement ensures dataset quality commitment
+   - Stakes are locked until dataset validation
 
-## Core Features
+2. **Computation Marketplace**
+   - ML developers can place bids for computation time
+   - Bid system includes computation duration and deadlines
+   - Automatic matching of bids with dataset providers
 
-### 1. Dataset Quality Staking
-- Data providers stake tokens to guarantee dataset quality
-- Minimum stake requirement of 1000 tokens
-- Stake slashing for poor quality data
-- Quality scoring based on usage and model performance
+3. **Model Validation System**
+   - Automated validation of model improvements
+   - Performance thresholds for reward distribution
+   - Quality scoring mechanism for datasets
 
-### 2. Computation Marketplace
-- ML developers place bids for computation time
-- Smart matching of compute providers with requirements
-- Automated payment distribution
-- SLA enforcement through smart contracts
-
-### 3. Model Validation
-- Automated performance measurement
-- Baseline comparison tracking
-- Decentralized validation nodes
-- Performance improvement verification
-
-### 4. Reward Distribution
-- Performance-based token rewards
-- Multi-stakeholder reward splitting
-- Automated distribution based on smart contract terms
-- Incentive alignment mechanism
+4. **Reward Distribution**
+   - Performance-based reward distribution
+   - Automatic payment execution upon validation
+   - Stake slashing for poor-quality datasets
 
 ## Smart Contracts
 
-### AIDatasetRegistry
-Manages dataset registration and quality staking. Data providers can:
-- Register new datasets with metadata
-- Stake tokens on quality
-- Update dataset information
-- Withdraw stakes after lock period
+### Main Contracts
 
-### ComputationMarket
-Handles the marketplace for compute resources:
-- Bid placement and matching
-- Compute time allocation
-- Payment processing
-- SLA enforcement
+1. **neural-training-market**
+   - Core marketplace functionality
+   - Handles dataset registration and staking
+   - Manages computation bids
+   - Controls validation and reward distribution
 
-### ModelValidation
-Validates AI model improvements:
-- Performance metric tracking
-- Automated testing
-- Result verification
-- Improvement calculation
+## Technical Implementation
 
-### RewardDistribution
-Manages the reward system:
-- Token distribution
-- Performance-based calculations
-- Claim processing
-- Stake rewards
+### Prerequisites
+- Clarity CLI
+- Stacks blockchain network access
+- STX tokens for testing
 
-## Setup and Installation
-
-1. Install dependencies:
+### Installation
+1. Clone the repository:
 ```bash
-npm install
+git clone https://github.com/your-username/neural-network-dmarket
+cd neural-network-dmarket
 ```
 
-2. Compile contracts:
+2. Deploy the contracts:
 ```bash
-npx hardhat compile
+clarinet contract deploy neural-training-market
 ```
 
-3. Run tests:
-```bash
-npx hardhat test
+### Usage
+
+1. **Register a Dataset**
+```clarity
+(contract-call? .neural-training-market register-dataset u1000000 "ipfs://dataset-metadata")
 ```
 
-4. Deploy:
-```bash
-npx hardhat run scripts/deploy.js --network <network-name>
+2. **Place a Computation Bid**
+```clarity
+(contract-call? .neural-training-market place-computation-bid u1 u500000 u100 u150)
 ```
 
-## Technical Requirements
+3. **Submit Validation Results**
+```clarity
+(contract-call? .neural-training-market submit-validation-result u1 u1 u85)
+```
 
-- Node.js >=14.0.0
-- Hardhat
-- OpenZeppelin Contracts
-- Solidity ^0.8.19
+4. **Claim Rewards**
+```clarity
+(contract-call? .neural-training-market claim-validation-reward u1)
+```
 
 ## Security Considerations
 
-- Multi-signature wallet integration for admin functions
-- Timelock mechanisms for critical operations
-- Emergency pause functionality
-- Comprehensive audit requirements
-- Stake slashing conditions
-- Oracle attack prevention
+1. **Staking Security**
+   - Minimum stake requirements
+   - Locked stakes during active periods
+   - Slashing conditions for malicious behavior
+
+2. **Validation Integrity**
+   - Performance threshold requirements
+   - Multi-stage validation process
+   - Automated result verification
+
+3. **Economic Security**
+   - Balanced reward distribution
+   - Protection against gaming the system
+   - Stake-weighted voting mechanisms
+
+## Future Enhancements
+
+1. Governance mechanism for parameter updates
+2. Enhanced validation metrics
+3. Integration with decentralized compute networks
+4. Cross-chain compatibility
+5. Advanced reward distribution algorithms
+
+## Contributing
+
+Please read CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
 
 ## License
-MIT
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
